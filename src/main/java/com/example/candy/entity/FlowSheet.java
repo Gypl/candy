@@ -20,11 +20,11 @@ public class FlowSheet {
     @Column(name = "confectionery_name", unique = true)
     private String confectioneryName;
 
-    @OneToMany(mappedBy = "flowSheet", orphanRemoval = true)
+    @OneToMany(mappedBy = "flowSheet", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Ingredient> ingredients = new ArrayList<>();
 
     @ManyToOne
-    @JoinColumn(name = "candy_shop_id")
+    @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 
 }

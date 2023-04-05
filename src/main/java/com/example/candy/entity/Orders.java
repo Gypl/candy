@@ -20,7 +20,7 @@ public class Orders {
     @Column(name = "order_number", nullable = false)
     private Long orderNumber;
 
-    @OneToMany(mappedBy = "orders", orphanRemoval = true)
+    @OneToMany(mappedBy = "orders", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<OrderedConfectionery> orderedConfectioneries = new ArrayList<>();
 
     @Column(name = "start_ready")
@@ -30,7 +30,7 @@ public class Orders {
     private Boolean serveReady;
 
     @ManyToOne
-    @JoinColumn(name = "candy_shop_id")
+    @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 
 }

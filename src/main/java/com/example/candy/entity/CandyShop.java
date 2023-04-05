@@ -20,19 +20,19 @@ public class CandyShop {
     @Column(name = "name", nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "candyShop", orphanRemoval = true)
+    @OneToMany(mappedBy = "candyShop", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<FlowSheet> flowSheets = new ArrayList<>();
 
-    @OneToMany(mappedBy = "candyShop", orphanRemoval = true)
+    @OneToMany(mappedBy = "candyShop", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Resource> resources = new ArrayList<>();
 
-    @OneToMany(mappedBy = "candyShop", orphanRemoval = true)
+    @OneToMany(mappedBy = "candyShop", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Confectionery> confectioneries = new ArrayList<>();
 
-    @OneToMany(mappedBy = "candyShop", orphanRemoval = true)
+    @OneToMany(mappedBy = "candyShop", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Purchase> purchases = new ArrayList<>();
 
-    @OneToMany(mappedBy = "candyShop", orphanRemoval = true)
+    @OneToMany(mappedBy = "candyShop", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Orders> orders = new ArrayList<>();
 
 }

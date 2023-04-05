@@ -16,17 +16,17 @@ public class Ingredient {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "amount")
+    @Column(name = "amount", nullable = false)
     private Double amount;
 
     @Column(name = "dimension", nullable = false)
     private String dimension;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "flow_sheet_id", nullable = false)
     private FlowSheet flowSheet;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "ingredient_name_id", nullable = false)
     private Resource ingredientName;
 

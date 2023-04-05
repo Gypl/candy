@@ -1,6 +1,7 @@
 package com.example.candy.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +23,7 @@ public class Confectionery {
     private Integer number;
 
     @ManyToOne
-    @JoinColumn(name = "candy_shop_id")
+    @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 
 }

@@ -27,7 +27,7 @@ public class Resource {
     private String dimension;
 
     @ManyToOne
-    @JoinColumn(name = "candy_shop_id")
+    @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 
 }
