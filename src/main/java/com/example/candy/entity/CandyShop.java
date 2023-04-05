@@ -33,6 +33,6 @@ public class CandyShop {
     private List<Purchase> purchases = new ArrayList<>();
 
     @OneToMany(mappedBy = "candyShop", orphanRemoval = true)
-    private List<Order> orders = new ArrayList<>();
+    private List<Orders> orders = new ArrayList<>();
 
 }

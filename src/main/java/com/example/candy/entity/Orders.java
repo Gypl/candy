@@ -9,9 +9,9 @@ import java.util.List;
 
 @Getter
 @Setter
-@Entity(name = "Order")
-@Table(name = "order")
-public class Order {
+@Entity(name = "Orders")
+@Table(name = "orders")
+public class Orders {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id", nullable = false)
@@ -20,7 +20,7 @@ public class Order {
     @Column(name = "order_number", nullable = false)
     private Long orderNumber;
 
-    @OneToMany(mappedBy = "order", orphanRemoval = true)
+    @OneToMany(mappedBy = "orders", orphanRemoval = true)
     private List<OrderedConfectionery> orderedConfectioneries = new ArrayList<>();
 
     @Column(name = "start_ready")
