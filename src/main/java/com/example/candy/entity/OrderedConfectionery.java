@@ -14,14 +14,14 @@ public class OrderedConfectionery {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, optional = false)
     @JoinColumn(name = "confectionery_name_id", nullable = false)
     private FlowSheet confectioneryName;
 
     @Column(name = "number", nullable = false)
     private Integer number;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id", nullable = false)
     private Orders orders;
 

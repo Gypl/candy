@@ -26,7 +26,7 @@ public class Resource {
     @Column(name = "dimension", nullable = false)
     private String dimension;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 

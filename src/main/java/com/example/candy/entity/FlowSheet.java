@@ -23,7 +23,7 @@ public class FlowSheet {
     @OneToMany(mappedBy = "flowSheet", orphanRemoval = true, cascade = CascadeType.ALL)
     private List<Ingredient> ingredients = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 
