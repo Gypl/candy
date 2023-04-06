@@ -25,7 +25,7 @@ public class IngredientService {
      * @param name Название тех. карты изделия.
      * @return Ингредиенты сущности flowSheet по названию имени изделия.
      */
-    public List<IngredientDto> findAllIngredients (String name) {
+    public List<IngredientDto> findAll (String name) {
         List<IngredientDto> result = new ArrayList<>();
         for (Ingredient ingredient : name == null
                 ? ingredientRepository.findAll() : ingredientRepository.findByFlowSheet_ConfectioneryNameIgnoreCase(name)) {
@@ -35,13 +35,38 @@ public class IngredientService {
     }
 
     /**
-     * Обновляет перемнные ингредиентов.
+     * Обновляет перемнные Ingredient.
      * @param ingredientDto Новые параметры сущности.
      * @return Количество обновлённых записей.
      */
-    public IngredientDto update(IngredientDto ingredientDto){
+    public IngredientDto update (IngredientDto ingredientDto) {
         Ingredient ingredient = ingredientRepository.findById(ingredientDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         return IngredientDto.fromEntity(ingredientRepository.save(ingredient));
+    }
+
+    /**
+     * Создание новой записи сущности Ingredient.
+     * @param flowSheetId Идентификатор тех карты.
+     * @param ingredientDto Параметры сущности.
+     * @return
+     */
+    public IngredientDto create (long flowSheetId, IngredientDto ingredientDto) {
+        Ingredient ingredient = IngredientDto.toEntity(ingredientDto);
+        ingredient.setFlowSheet(flowSheetRepository.findById(flowSheetId).orElseThrow(()
+                -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        return IngredientDto.fromEntity(ingredientRepository.save(ingredient));
+    }
+
+    /**
+     * Удаление записи сущности Ingredient.
+     * @param id Идентификатор ингредиентаю
+     */
+    public void delete (long id) {
+        if (ingredientRepository.existsById(id)) {
+            ingredientRepository.deleteById(id);
+        } else {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
     }
 }
