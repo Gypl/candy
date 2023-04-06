@@ -43,6 +43,7 @@ public class FlowSheetService {
     public FlowSheetDto update (FlowSheetDto flowSheetDto) {
         FlowSheet flowSheet = flowSheetRepository.findById(flowSheetDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        flowSheet = FlowSheetDto.toEntity(flowSheetDto);
         return FlowSheetDto.fromEntity(flowSheetRepository.save(flowSheet));
     }
 

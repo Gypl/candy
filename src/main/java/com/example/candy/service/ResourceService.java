@@ -43,6 +43,7 @@ public class ResourceService {
     public ResourceDto update (ResourceDto resourceDto) {
         Resource resource = resourceRepository.findById(resourceDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        resource = ResourceDto.toEntity(resourceDto);
         return ResourceDto.fromEntity(resourceRepository.save(resource));
     }
 

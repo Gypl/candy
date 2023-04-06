@@ -46,6 +46,7 @@ public class PurchaseService {
     public PurchaseDto update (PurchaseDto purchaseDto) {
         Purchase purchase = purchaseRepository.findById(purchaseDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        purchase = purchaseDto.toEntity(purchaseDto);
         return PurchaseDto.fromEntity(purchaseRepository.save(purchase));
     }
 

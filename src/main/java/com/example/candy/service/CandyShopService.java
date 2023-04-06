@@ -40,6 +40,7 @@ public class CandyShopService {
     public CandyShopDto update (CandyShopDto candyShopDto) {
         CandyShop candyShop = candyShopRepository.findById(candyShopDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        candyShop = CandyShopDto.toEntity(candyShopDto);
         return CandyShopDto.fromEntity(candyShopRepository.save(candyShop));
     }
 

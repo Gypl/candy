@@ -42,6 +42,7 @@ public class ConfectioneryService {
     public ConfectioneryDto update (ConfectioneryDto confectioneryDto) {
         Confectionery confectionery = confectioneryRepository.findById(confectioneryDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        confectionery = ConfectioneryDto.toEntity(confectioneryDto);
         return ConfectioneryDto.fromEntity(confectioneryRepository.save(confectionery));
     }
 

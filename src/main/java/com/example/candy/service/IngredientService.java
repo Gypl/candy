@@ -42,6 +42,7 @@ public class IngredientService {
     public IngredientDto update (IngredientDto ingredientDto) {
         Ingredient ingredient = ingredientRepository.findById(ingredientDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+        ingredient = IngredientDto.toEntity(ingredientDto);
         return IngredientDto.fromEntity(ingredientRepository.save(ingredient));
     }
 

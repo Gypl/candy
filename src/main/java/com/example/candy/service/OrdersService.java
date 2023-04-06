@@ -43,6 +43,7 @@ public class OrdersService {
         public OrdersDto update (OrdersDto ordersDto) {
             Orders orders = ordersRepository.findById(ordersDto.getId()).orElseThrow(()
                     -> new ResponseStatusException(HttpStatus.NOT_FOUND));
+            orders = OrdersDto.toEntity(ordersDto);
             return OrdersDto.fromEntity(ordersRepository.save(orders));
         }
 

@@ -28,9 +28,9 @@ public class OrderedConfectioneryService {
 
     public List<OrderedConfectioneryDto> findAll (Long id) {
         List<OrderedConfectioneryDto> result = new ArrayList<>();
-        for (OrderedConfectionery OrderedConfectionery : id == null
+        for (OrderedConfectionery orderedConfectionery : id == null
                 ? orderedConfectioneryRepository.findAll() : orderedConfectioneryRepository.findByOrders_Id(id)) {
-            result.add(OrderedConfectioneryDto.fromEntity(OrderedConfectionery));
+            result.add(OrderedConfectioneryDto.fromEntity(orderedConfectionery));
         }
         return result;
     }
@@ -41,9 +41,10 @@ public class OrderedConfectioneryService {
      * @return Возвращает запись OrderedConfectionery.
      */
     public OrderedConfectioneryDto update (OrderedConfectioneryDto orderedConfectioneryDto) {
-        OrderedConfectionery OrderedConfectionery = orderedConfectioneryRepository.findById(orderedConfectioneryDto.getId()).orElseThrow(()
+        OrderedConfectionery orderedConfectionery = orderedConfectioneryRepository.findById(orderedConfectioneryDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
-        return OrderedConfectioneryDto.fromEntity(orderedConfectioneryRepository.save(OrderedConfectionery));
+        orderedConfectionery = OrderedConfectioneryDto.toEntity(orderedConfectioneryDto);
+        return OrderedConfectioneryDto.fromEntity(orderedConfectioneryRepository.save(orderedConfectionery));
     }
 
     /**
@@ -53,10 +54,10 @@ public class OrderedConfectioneryService {
      * @return Возвращает запись OrderedConfectionery.
      */
     public OrderedConfectioneryDto create (long ordersId, OrderedConfectioneryDto orderedConfectioneryDto) {
-        OrderedConfectionery OrderedConfectionery = OrderedConfectioneryDto.toEntity(orderedConfectioneryDto);
-        OrderedConfectionery.setOrders(ordersRepository.findById(ordersId).orElseThrow(()
+        OrderedConfectionery orderedConfectionery = OrderedConfectioneryDto.toEntity(orderedConfectioneryDto);
+        orderedConfectionery.setOrders(ordersRepository.findById(ordersId).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
-        return OrderedConfectioneryDto.fromEntity(orderedConfectioneryRepository.save(OrderedConfectionery));
+        return OrderedConfectioneryDto.fromEntity(orderedConfectioneryRepository.save(orderedConfectionery));
     }
 
     /**
