@@ -1,6 +1,7 @@
 package com.example.candy.controller;
 
 import com.example.candy.dto.FlowSheetDto;
+import com.example.candy.service.CandyShopService;
 import com.example.candy.service.FlowSheetService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/{shopName}/flowSheet")
 public class FlowSheetController {
+    private final CandyShopService candyShopService;
     private final FlowSheetService flowSheetService;
     @GetMapping("/count")
     public long count() {
@@ -26,9 +28,10 @@ public class FlowSheetController {
     public List<FlowSheetDto> findAllByCandyShopName(@PathVariable String name) {
         return flowSheetService.findAll(name);
     }
-    @PostMapping("/{flowSheetId}/create")
-    public FlowSheetDto create(@PathVariable long flowSheetId, @RequestBody FlowSheetDto flowSheetDto){
-        return flowSheetService.create(flowSheetId, flowSheetDto);
+    @PostMapping("/create")
+    public FlowSheetDto create(@PathVariable String shopName, @RequestBody FlowSheetDto flowSheetDto){
+        long shopId = candyShopService.getIdByName(shopName);
+        return flowSheetService.create(shopId, flowSheetDto);
     }
     @PutMapping("/update")
     public FlowSheetDto update(@RequestBody FlowSheetDto studentPojo) {

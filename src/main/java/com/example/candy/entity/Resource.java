@@ -17,7 +17,7 @@ public class Resource {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "resource_name", nullable = false, unique = true)
+    @Column(name = "resource_name", nullable = false)
     private String resourceName;
 
     @Column(name = "amount", nullable = false)
@@ -26,7 +26,7 @@ public class Resource {
     @Column(name = "dimension", nullable = false)
     private String dimension;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 

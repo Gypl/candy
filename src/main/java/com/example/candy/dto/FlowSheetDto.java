@@ -21,13 +21,13 @@ public class FlowSheetDto implements Serializable {
     private Long id;
     private String confectioneryName;
     private List<IngredientDto> ingredients;
-    private CandyShop candyShop;
+    private Long candyShopId;
 
     public static FlowSheetDto fromEntity (FlowSheet flowSheet) {
         FlowSheetDto dto = new FlowSheetDto();
         dto.setId(flowSheet.getId());
         dto.setConfectioneryName(flowSheet.getConfectioneryName());
-        dto.setCandyShop(flowSheet.getCandyShop());
+        dto.setCandyShopId(flowSheet.getCandyShop().getId());
         List<IngredientDto> ingredients = new ArrayList<>();
         dto.setIngredients(ingredients);
         for (Ingredient ingredient : flowSheet.getIngredients()) {
@@ -40,7 +40,6 @@ public class FlowSheetDto implements Serializable {
         FlowSheet flowSheet = new FlowSheet();
         flowSheet.setId(dto.getId());
         flowSheet.setConfectioneryName(dto.getConfectioneryName());
-        flowSheet.setCandyShop(dto.getCandyShop());
         flowSheet.setIngredients(new ArrayList<>());
         return flowSheet;
     }

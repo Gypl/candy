@@ -16,12 +16,10 @@ public class IngredientController {
     public long count() {
         return ingredientService.count();
     }
-
     @GetMapping
     public List<IngredientDto> findAll() {
         return ingredientService.findAll(null);
     }
-
     @GetMapping("/{name}")
     public List<IngredientDto> findAllByConfectioneryName(@PathVariable String name) {
         return ingredientService.findAll(name);

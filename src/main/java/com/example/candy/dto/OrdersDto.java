@@ -23,7 +23,7 @@ public class OrdersDto implements Serializable {
     private List<OrderedConfectioneryDto> orderedConfectioneries;
     private Boolean startReady;
     private Boolean serveReady;
-    private CandyShop candyShop;
+    private Long candyShopId;
 
     public static OrdersDto fromEntity (Orders orders) {
         OrdersDto dto = new OrdersDto();
@@ -31,7 +31,7 @@ public class OrdersDto implements Serializable {
         dto.setOrderNumber(orders.getOrderNumber());
         dto.setStartReady(orders.getStartReady());
         dto.setServeReady(orders.getServeReady());
-        dto.setCandyShop(orders.getCandyShop());
+        dto.setCandyShopId(orders.getCandyShop().getId());
         List<OrderedConfectioneryDto> orderedConfectioneries = new ArrayList<>();
         dto.setOrderedConfectioneries(orderedConfectioneries);
         for (OrderedConfectionery orderedConfectionery : orders.getOrderedConfectioneries()) {
@@ -46,7 +46,6 @@ public class OrdersDto implements Serializable {
         orders.setOrderNumber(dto.getOrderNumber());
         orders.setStartReady(dto.getStartReady());
         orders.setServeReady(dto.getServeReady());
-        orders.setCandyShop(dto.getCandyShop());
         orders.setOrderedConfectioneries(new ArrayList<>());
         return orders;
     }

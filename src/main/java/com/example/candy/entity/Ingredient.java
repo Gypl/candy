@@ -22,11 +22,11 @@ public class Ingredient {
     @Column(name = "dimension", nullable = false)
     private String dimension;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "flow_sheet_id", nullable = false)
     private FlowSheet flowSheet;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ingredient_name_id", nullable = false)
     private Resource ingredientName;
 

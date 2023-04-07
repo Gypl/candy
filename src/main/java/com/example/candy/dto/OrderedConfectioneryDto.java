@@ -19,14 +19,14 @@ public class OrderedConfectioneryDto implements Serializable {
     private Long id;
     private FlowSheet confectioneryName;
     private Integer number;
-    private Orders orders;
+    private Long ordersId;
 
     public static OrderedConfectioneryDto fromEntity(OrderedConfectionery orderedConfectionery) {
         OrderedConfectioneryDto dto = new OrderedConfectioneryDto();
         dto.setId(orderedConfectionery.getId());
         dto.setConfectioneryName(orderedConfectionery.getConfectioneryName());
         dto.setNumber(orderedConfectionery.getNumber());
-        dto.setOrders(orderedConfectionery.getOrders());
+        dto.setOrdersId(orderedConfectionery.getOrders().getId());
         return dto;
     }
 
@@ -35,7 +35,6 @@ public class OrderedConfectioneryDto implements Serializable {
         orderedConfectionery.setId(dto.getId());
         orderedConfectionery.setConfectioneryName(dto.getConfectioneryName());
         orderedConfectionery.setNumber(dto.getNumber());
-        orderedConfectionery.setOrders(dto.getOrders());
         return orderedConfectionery;
     }
 }

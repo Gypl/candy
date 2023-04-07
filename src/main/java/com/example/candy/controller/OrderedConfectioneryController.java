@@ -26,9 +26,9 @@ public class OrderedConfectioneryController {
     public List<OrderedConfectioneryDto> findAllByOrdersNumber(@PathVariable Long number) {
         return orderedConfectioneryService.findAll(number);
     }
-    @PostMapping("/{orderedConfectioneryId}/create")
-    public OrderedConfectioneryDto create(@PathVariable long orderedConfectioneryId, @RequestBody OrderedConfectioneryDto orderedConfectioneryDto){
-        return orderedConfectioneryService.create(orderedConfectioneryId, orderedConfectioneryDto);
+    @PostMapping("/{ordersId}/create")
+    public OrderedConfectioneryDto create(@PathVariable long ordersId, @RequestBody OrderedConfectioneryDto orderedConfectioneryDto){
+        return orderedConfectioneryService.create(ordersId, orderedConfectioneryDto);
     }
     @PutMapping("/update")
     public OrderedConfectioneryDto update(@RequestBody OrderedConfectioneryDto studentPojo) {

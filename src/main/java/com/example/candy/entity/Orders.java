@@ -30,7 +30,7 @@ public class Orders {
     @Column(name = "serve_ready")
     private Boolean serveReady;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 

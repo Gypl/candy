@@ -19,7 +19,7 @@ public class ResourceDto implements Serializable {
     private String resourceName;
     private Double amount;
     private String dimension;
-    private CandyShop candyShop;
+    private Long shopId;
 
     public static ResourceDto fromEntity (Resource resource) {
         ResourceDto dto = new ResourceDto();
@@ -27,7 +27,7 @@ public class ResourceDto implements Serializable {
         dto.setResourceName(resource.getResourceName());
         dto.setAmount(resource.getAmount());
         dto.setDimension(resource.getDimension());
-        dto.setCandyShop(resource.getCandyShop());
+        dto.setShopId(resource.getCandyShop().getId());
         return dto;
     }
 
@@ -37,7 +37,6 @@ public class ResourceDto implements Serializable {
         resource.setResourceName(dto.getResourceName());
         resource.setAmount(dto.getAmount());
         resource.setDimension(dto.getDimension());
-        resource.setCandyShop(dto.getCandyShop());
         return resource;
     }
 }

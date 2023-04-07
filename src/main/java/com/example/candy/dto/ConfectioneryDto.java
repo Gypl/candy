@@ -19,14 +19,14 @@ public class ConfectioneryDto implements Serializable {
     private Long id;
     private FlowSheet confectioneryName;
     private Integer number;
-    private CandyShop candyShop;
+    private Long candyShopId;
 
     public static ConfectioneryDto fromEntity (Confectionery confectionery) {
         ConfectioneryDto dto = new ConfectioneryDto();
         dto.setId(confectionery.getId());
         dto.setConfectioneryName(confectionery.getConfectioneryName());
         dto.setNumber(confectionery.getNumber());
-        dto.setCandyShop(confectionery.getCandyShop());
+        dto.setCandyShopId(confectionery.getCandyShop().getId());
         return dto;
     }
 
@@ -35,7 +35,6 @@ public class ConfectioneryDto implements Serializable {
         confectionery.setId(dto.getId());
         confectionery.setConfectioneryName(dto.getConfectioneryName());
         confectionery.setNumber(dto.getNumber());
-        confectionery.setCandyShop(dto.getCandyShop());
         return confectionery;
     }
 }

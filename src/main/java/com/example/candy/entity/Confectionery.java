@@ -22,7 +22,7 @@ public class Confectionery {
     @Column(name = "number", nullable = false)
     private Integer number;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 

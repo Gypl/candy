@@ -19,16 +19,16 @@ public class IngredientDto implements Serializable {
     private Long id;
     private Double amount;
     private String dimension;
-    private FlowSheet flowSheet;
-    private Resource ingredientName;
+    private Long flowSheetId;
+    private String ingredientName;
 
     public static IngredientDto fromEntity (Ingredient ingredient) {
         IngredientDto dto = new IngredientDto();
         dto.setId(ingredient.getId());
         dto.setAmount(ingredient.getAmount());
         dto.setDimension(ingredient.getDimension());
-        dto.setFlowSheet(ingredient.getFlowSheet());
-        dto.setIngredientName(ingredient.getIngredientName());
+        dto.setFlowSheetId(ingredient.getFlowSheet().getId());
+        dto.setIngredientName(ingredient.getIngredientName().getResourceName());
         return dto;
     }
 
@@ -37,8 +37,6 @@ public class IngredientDto implements Serializable {
         ingredient.setId(dto.getId());
         ingredient.setAmount(dto.getAmount());
         ingredient.setDimension(dto.getDimension());
-        ingredient.setFlowSheet(dto.getFlowSheet());
-        ingredient.setIngredientName(dto.getIngredientName());
         return ingredient;
     }
 }

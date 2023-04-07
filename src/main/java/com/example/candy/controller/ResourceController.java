@@ -1,6 +1,8 @@
 package com.example.candy.controller;
 
 import com.example.candy.dto.ResourceDto;
+import com.example.candy.repository.CandyShopRepository;
+import com.example.candy.service.CandyShopService;
 import com.example.candy.service.ResourceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +13,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/{shopName}/resource")
 public class ResourceController {
+    private final CandyShopService candyShopService;
     private final ResourceService resourceService;
     @GetMapping("/count")
     public long count() {
@@ -22,13 +25,14 @@ public class ResourceController {
         return resourceService.findAll(null);
     }
 
-    @GetMapping("/{name}")
-    public List<ResourceDto> findAllByCandyShopName(@PathVariable String name) {
-        return resourceService.findAll(name);
+    @GetMapping("/shop")
+    public List<ResourceDto> findAllByCandyShopName(@PathVariable String shopName) {
+        return resourceService.findAll(shopName);
     }
-    @PostMapping("/{resourceId}/create")
-    public ResourceDto create(@PathVariable long resourceId, @RequestBody ResourceDto resourceDto){
-        return resourceService.create(resourceId, resourceDto);
+    @PostMapping("/create")
+    public ResourceDto create(@PathVariable String shopName, @RequestBody ResourceDto resourceDto){
+        long shopId = candyShopService.getIdByName(shopName);
+        return resourceService.create(shopId, resourceDto);
     }
     @PutMapping("/update")
     public ResourceDto update(@RequestBody ResourceDto studentPojo) {

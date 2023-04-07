@@ -44,6 +44,7 @@ public class ResourceService {
         Resource resource = resourceRepository.findById(resourceDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         resource = ResourceDto.toEntity(resourceDto);
+        resource.setCandyShop(candyShopRepository.getReferenceById(resourceDto.getShopId()));
         return ResourceDto.fromEntity(resourceRepository.save(resource));
     }
 

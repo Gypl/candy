@@ -19,7 +19,7 @@ public class PurchaseDto implements Serializable {
     private String name;
     private Double amount;
     private String dimension;
-    private CandyShop candyShop;
+    private Long candyShopId;
 
     public static PurchaseDto fromEntity (Purchase purchase) {
         PurchaseDto dto = new PurchaseDto();
@@ -27,7 +27,7 @@ public class PurchaseDto implements Serializable {
         dto.setName(purchase.getName());
         dto.setAmount(purchase.getAmount());
         dto.setDimension(purchase.getDimension());
-        dto.setCandyShop(purchase.getCandyShop());
+        dto.setCandyShopId(purchase.getCandyShop().getId());
         return dto;
     }
 
@@ -37,7 +37,6 @@ public class PurchaseDto implements Serializable {
         purchase.setName(dto.getName());
         purchase.setAmount(dto.getAmount());
         purchase.setDimension(dto.getDimension());
-        purchase.setCandyShop(dto.getCandyShop());
         return purchase;
     }
 }

@@ -9,4 +9,9 @@ import java.util.Optional;
 public interface CandyShopRepository extends JpaRepository<CandyShop, Long> {
     List<CandyShop> findByNameIgnoreCase(String name);
 
+    CandyShop findCandyShopByNameIgnoreCase(String name);
+
+    boolean existsByName(String name);
+
+
 }

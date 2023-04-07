@@ -1,6 +1,7 @@
 package com.example.candy.controller;
 
 import com.example.candy.dto.OrdersDto;
+import com.example.candy.service.CandyShopService;
 import com.example.candy.service.OrdersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/api/{shopName}/orders")
 public class OrdersController {
+    private final CandyShopService candyShopService;
     private final OrdersService ordersService;
     @GetMapping("/count")
     public long count() {
@@ -26,9 +28,10 @@ public class OrdersController {
     public List<OrdersDto> findAllByCandyShopName(@PathVariable String name) {
         return ordersService.findAll(name);
     }
-    @PostMapping("/{ordersId}/create")
-    public OrdersDto create(@PathVariable long ordersId, @RequestBody OrdersDto ordersDto){
-        return ordersService.create(ordersId, ordersDto);
+    @PostMapping("/create")
+    public OrdersDto create(@PathVariable String shopName, @RequestBody OrdersDto ordersDto){
+        long shopId = candyShopService.getIdByName(shopName);
+        return ordersService.create(shopId, ordersDto);
     }
     @PutMapping("/update")
     public OrdersDto update(@RequestBody OrdersDto studentPojo) {

@@ -33,6 +33,16 @@ public class CandyShopService {
     }
 
     /**
+     * Возвращает Id кондитерского магазина с именем name.
+     * @param name Имя кондитерской.
+     * @return Id кондитерской.
+     */
+    public long getIdByName (String name) {
+        if (!candyShopRepository.existsByName(name))
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Shop doesn't exist.");
+        return candyShopRepository.findCandyShopByNameIgnoreCase(name).getId();
+    }
+    /**
      * Обновляет переменные кондитерской.
      * @param candyShopDto Новые параметры сущности.
      * @return Возвращает запись CandyShop.

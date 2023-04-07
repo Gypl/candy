@@ -23,7 +23,7 @@ public class Purchase {
     @Column(name = "dimension", nullable = false)
     private String dimension;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "candy_shop_id", nullable = false)
     private CandyShop candyShop;
 
