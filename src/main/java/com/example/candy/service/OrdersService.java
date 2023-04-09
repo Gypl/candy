@@ -44,6 +44,7 @@ public class OrdersService {
             Orders orders = ordersRepository.findById(ordersDto.getId()).orElseThrow(()
                     -> new ResponseStatusException(HttpStatus.NOT_FOUND));
             orders = OrdersDto.toEntity(ordersDto);
+            orders.setCandyShop(candyShopRepository.getReferenceById(ordersDto.getCandyShopId()));
             return OrdersDto.fromEntity(ordersRepository.save(orders));
         }
 

@@ -17,14 +17,14 @@ import java.io.Serializable;
 @Setter
 public class OrderedConfectioneryDto implements Serializable {
     private Long id;
-    private FlowSheet confectioneryName;
+    private String confectioneryName;
     private Integer number;
     private Long ordersId;
 
     public static OrderedConfectioneryDto fromEntity(OrderedConfectionery orderedConfectionery) {
         OrderedConfectioneryDto dto = new OrderedConfectioneryDto();
         dto.setId(orderedConfectionery.getId());
-        dto.setConfectioneryName(orderedConfectionery.getConfectioneryName());
+        dto.setConfectioneryName(orderedConfectionery.getConfectioneryName().getConfectioneryName());
         dto.setNumber(orderedConfectionery.getNumber());
         dto.setOrdersId(orderedConfectionery.getOrders().getId());
         return dto;
@@ -33,7 +33,6 @@ public class OrderedConfectioneryDto implements Serializable {
     public static OrderedConfectionery toEntity (OrderedConfectioneryDto dto) {
         OrderedConfectionery orderedConfectionery = new OrderedConfectionery();
         orderedConfectionery.setId(dto.getId());
-        orderedConfectionery.setConfectioneryName(dto.getConfectioneryName());
         orderedConfectionery.setNumber(dto.getNumber());
         return orderedConfectionery;
     }

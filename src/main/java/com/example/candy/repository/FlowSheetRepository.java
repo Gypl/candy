@@ -12,5 +12,8 @@ public interface FlowSheetRepository extends JpaRepository<FlowSheet, Long> {
 
     FlowSheet findByConfectioneryNameIgnoreCase(String confectioneryName);
 
+    FlowSheet findByCandyShop_IdAndConfectioneryNameIgnoreCase(Long id, String confectioneryName);
+
+
 
 }

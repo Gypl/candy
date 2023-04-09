@@ -46,9 +46,10 @@ public class IngredientService {
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "FlowSheer doesn't exist."));
         ingredient = IngredientDto.toEntity(ingredientDto);
         ingredient.setFlowSheet(flowSheetRepository.findByConfectioneryNameIgnoreCase(ingredientDto.getIngredientName()));
-        ingredient.setIngredientName(resourceRepository.findByIdAndResourceNameIgnoreCase(
+        ingredient.setIngredientName(resourceRepository.findByCandyShop_IdAndResourceNameIgnoreCase(
                 flowSheetRepository.getReferenceById(ingredientDto.getFlowSheetId()).getCandyShop().getId(),
-                ingredientDto.getIngredientName()));
+                ingredientDto.getIngredientName()
+        ));
         return IngredientDto.fromEntity(ingredientRepository.save(ingredient));
     }
 
@@ -62,7 +63,7 @@ public class IngredientService {
         Ingredient ingredient = IngredientDto.toEntity(ingredientDto);
         ingredient.setFlowSheet(flowSheetRepository.findById(flowSheetId).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND, "FlowSheer doesn't exist.")));
-        ingredient.setIngredientName(resourceRepository.findByIdAndResourceNameIgnoreCase(
+        ingredient.setIngredientName(resourceRepository.findByCandyShop_IdAndResourceNameIgnoreCase(
                 flowSheetRepository.getReferenceById(flowSheetId).getCandyShop().getId(),
                 ingredientDto.getIngredientName()));
         return IngredientDto.fromEntity(ingredientRepository.save(ingredient));

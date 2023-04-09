@@ -1,6 +1,5 @@
 package com.example.candy.dto;
 
-import com.example.candy.entity.CandyShop;
 import com.example.candy.entity.Resource;
 import lombok.Data;
 import lombok.Getter;
@@ -19,7 +18,7 @@ public class ResourceDto implements Serializable {
     private String resourceName;
     private Double amount;
     private String dimension;
-    private Long shopId;
+    private Long candyShopId;
 
     public static ResourceDto fromEntity (Resource resource) {
         ResourceDto dto = new ResourceDto();
@@ -27,7 +26,7 @@ public class ResourceDto implements Serializable {
         dto.setResourceName(resource.getResourceName());
         dto.setAmount(resource.getAmount());
         dto.setDimension(resource.getDimension());
-        dto.setShopId(resource.getCandyShop().getId());
+        dto.setCandyShopId(resource.getCandyShop().getId());
         return dto;
     }
 

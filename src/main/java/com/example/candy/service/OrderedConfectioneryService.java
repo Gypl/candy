@@ -2,6 +2,7 @@ package com.example.candy.service;
 
 import com.example.candy.dto.OrderedConfectioneryDto;
 import com.example.candy.entity.OrderedConfectionery;
+import com.example.candy.repository.FlowSheetRepository;
 import com.example.candy.repository.OrderedConfectioneryRepository;
 import com.example.candy.repository.OrdersRepository;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +18,7 @@ import java.util.List;
 public class OrderedConfectioneryService {
     private final OrderedConfectioneryRepository orderedConfectioneryRepository;
     private final OrdersRepository ordersRepository;
+    private final FlowSheetRepository flowSheetRepository;
 
     public long count() {return orderedConfectioneryRepository.count();}
 
@@ -44,6 +46,11 @@ public class OrderedConfectioneryService {
         OrderedConfectionery orderedConfectionery = orderedConfectioneryRepository.findById(orderedConfectioneryDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         orderedConfectionery = OrderedConfectioneryDto.toEntity(orderedConfectioneryDto);
+        orderedConfectionery.setOrders(ordersRepository.getReferenceById(orderedConfectioneryDto.getOrdersId()));
+        orderedConfectionery.setConfectioneryName(flowSheetRepository.findByCandyShop_IdAndConfectioneryNameIgnoreCase(
+                ordersRepository.getReferenceById(orderedConfectioneryDto.getOrdersId()).getCandyShop().getId(),
+                orderedConfectioneryDto.getConfectioneryName()
+        ));
         return OrderedConfectioneryDto.fromEntity(orderedConfectioneryRepository.save(orderedConfectionery));
     }
 
@@ -57,6 +64,10 @@ public class OrderedConfectioneryService {
         OrderedConfectionery orderedConfectionery = OrderedConfectioneryDto.toEntity(orderedConfectioneryDto);
         orderedConfectionery.setOrders(ordersRepository.findById(ordersId).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        orderedConfectionery.setConfectioneryName(flowSheetRepository.findByCandyShop_IdAndConfectioneryNameIgnoreCase(
+                ordersRepository.getReferenceById(ordersId).getCandyShop().getId(),
+                orderedConfectioneryDto.getConfectioneryName()
+        ));
         return OrderedConfectioneryDto.fromEntity(orderedConfectioneryRepository.save(orderedConfectionery));
     }
 
