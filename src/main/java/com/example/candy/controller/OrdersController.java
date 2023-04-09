@@ -24,9 +24,9 @@ public class OrdersController {
         return ordersService.findAll(null);
     }
 
-    @GetMapping("/{name}")
-    public List<OrdersDto> findAllByCandyShopName(@PathVariable String name) {
-        return ordersService.findAll(name);
+    @GetMapping("/shop")
+    public List<OrdersDto> findAllByCandyShopName(@PathVariable String shopName) {
+        return ordersService.findAll(shopName);
     }
     @PostMapping("/create")
     public OrdersDto create(@PathVariable String shopName, @RequestBody OrdersDto ordersDto){

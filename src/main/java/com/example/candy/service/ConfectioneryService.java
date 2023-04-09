@@ -4,6 +4,7 @@ import com.example.candy.dto.ConfectioneryDto;
 import com.example.candy.entity.Confectionery;
 import com.example.candy.repository.CandyShopRepository;
 import com.example.candy.repository.ConfectioneryRepository;
+import com.example.candy.repository.FlowSheetRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -17,6 +18,7 @@ import java.util.List;
 public class ConfectioneryService {
     private final ConfectioneryRepository confectioneryRepository;
     private final CandyShopRepository candyShopRepository;
+    private final FlowSheetRepository flowSheetRepository;
 
     public long count() {return confectioneryRepository.count();}
 
@@ -43,6 +45,7 @@ public class ConfectioneryService {
         Confectionery confectionery = confectioneryRepository.findById(confectioneryDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         confectionery = ConfectioneryDto.toEntity(confectioneryDto);
+        confectionery.setConfectioneryName(flowSheetRepository.findFlowSheetByConfectioneryName(confectioneryDto.getConfectioneryName()));
         return ConfectioneryDto.fromEntity(confectioneryRepository.save(confectionery));
     }
 
@@ -56,6 +59,7 @@ public class ConfectioneryService {
         Confectionery confectionery = ConfectioneryDto.toEntity(confectioneryDto);
         confectionery.setCandyShop(candyShopRepository.findById(candyShopId).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND)));
+        confectionery.setConfectioneryName(flowSheetRepository.findFlowSheetByConfectioneryName(confectioneryDto.getConfectioneryName()));
         return ConfectioneryDto.fromEntity(confectioneryRepository.save(confectionery));
     }
 

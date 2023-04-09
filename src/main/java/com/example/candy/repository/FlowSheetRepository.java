@@ -7,4 +7,10 @@ import java.util.List;
 
 public interface FlowSheetRepository extends JpaRepository<FlowSheet, Long> {
     List<FlowSheet> findByCandyShop_NameIgnoreCase(String name);
+
+    FlowSheet findFlowSheetByConfectioneryName(String name);
+
+    FlowSheet findByConfectioneryNameIgnoreCase(String confectioneryName);
+
+
 }

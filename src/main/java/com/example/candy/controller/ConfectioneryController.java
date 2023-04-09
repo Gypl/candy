@@ -24,9 +24,9 @@ public class ConfectioneryController {
         return confectioneryService.findAll(null);
     }
 
-    @GetMapping("/{name}")
-    public List<ConfectioneryDto> findAllByCandyShopName(@PathVariable String name) {
-        return confectioneryService.findAll(name);
+    @GetMapping("/shop")
+    public List<ConfectioneryDto> findAllByCandyShopName(@PathVariable String shopName) {
+        return confectioneryService.findAll(shopName);
     }
     @PostMapping("/create")
     public ConfectioneryDto create(@PathVariable String shopName, @RequestBody ConfectioneryDto confectioneryDto){

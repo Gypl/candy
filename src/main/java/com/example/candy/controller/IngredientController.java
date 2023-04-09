@@ -18,11 +18,11 @@ public class IngredientController {
     }
     @GetMapping
     public List<IngredientDto> findAll() {
-        return ingredientService.findAll(null);
+        return ingredientService.findAll(-1);
     }
-    @GetMapping("/{name}")
-    public List<IngredientDto> findAllByConfectioneryName(@PathVariable String name) {
-        return ingredientService.findAll(name);
+    @GetMapping("/{flowSheetId}")
+    public List<IngredientDto> findAllByConfectioneryName(@PathVariable long flowSheetId) {
+        return ingredientService.findAll(flowSheetId);
     }
     @PostMapping("/{flowSheetId}/create")
     public IngredientDto create(@PathVariable long flowSheetId, @RequestBody IngredientDto ingredientDto){

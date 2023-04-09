@@ -24,9 +24,9 @@ public class PurchaseController {
         return purchaseService.findAll(null);
     }
 
-    @GetMapping("/{name}")
-    public List<PurchaseDto> findAllByCandyShopName(@PathVariable String name) {
-        return purchaseService.findAll(name);
+    @GetMapping("/shop")
+    public List<PurchaseDto> findAllByCandyShopName(@PathVariable String shopName) {
+        return purchaseService.findAll(shopName);
     }
     @PostMapping("/create")
     public PurchaseDto create(@PathVariable String shopName, @RequestBody PurchaseDto purchaseDto){

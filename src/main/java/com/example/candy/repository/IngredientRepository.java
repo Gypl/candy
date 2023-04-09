@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface IngredientRepository extends JpaRepository<Ingredient, Long> {
     List<Ingredient> findByFlowSheet_ConfectioneryNameIgnoreCase(String confectioneryName);
+
+    List<Ingredient> findAllById(Long name);
 }

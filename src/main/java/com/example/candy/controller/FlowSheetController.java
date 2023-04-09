@@ -24,9 +24,9 @@ public class FlowSheetController {
         return flowSheetService.findAll(null);
     }
 
-    @GetMapping("/{name}")
-    public List<FlowSheetDto> findAllByCandyShopName(@PathVariable String name) {
-        return flowSheetService.findAll(name);
+    @GetMapping("/shop")
+    public List<FlowSheetDto> findAllByCandyShopName(@PathVariable String shopName) {
+        return flowSheetService.findAll(shopName);
     }
     @PostMapping("/create")
     public FlowSheetDto create(@PathVariable String shopName, @RequestBody FlowSheetDto flowSheetDto){
