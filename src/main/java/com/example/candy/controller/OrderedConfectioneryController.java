@@ -22,9 +22,9 @@ public class OrderedConfectioneryController {
         return orderedConfectioneryService.findAll(null);
     }
 
-    @GetMapping("/{number}")
-    public List<OrderedConfectioneryDto> findAllByOrdersNumber(@PathVariable Long number) {
-        return orderedConfectioneryService.findAll(number);
+    @GetMapping("/{ordersId}")
+    public List<OrderedConfectioneryDto> findAllByOrdersNumber(@PathVariable Long ordersId) {
+        return orderedConfectioneryService.findAll(ordersId);
     }
     @PostMapping("/{ordersId}/create")
     public OrderedConfectioneryDto create(@PathVariable long ordersId, @RequestBody OrderedConfectioneryDto orderedConfectioneryDto){
