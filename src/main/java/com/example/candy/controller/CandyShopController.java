@@ -31,8 +31,8 @@ public class CandyShopController {
         return candyShopService.create(candyShopDto);
     }
     @PutMapping("/update")
-    public CandyShopDto update(@RequestBody CandyShopDto studentPojo) {
-        return candyShopService.update(studentPojo);
+    public CandyShopDto update(@RequestBody CandyShopDto candyShopDto) {
+        return candyShopService.update(candyShopDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){

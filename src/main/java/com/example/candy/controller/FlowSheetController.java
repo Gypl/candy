@@ -34,8 +34,8 @@ public class FlowSheetController {
         return flowSheetService.create(shopId, flowSheetDto);
     }
     @PutMapping("/update")
-    public FlowSheetDto update(@RequestBody FlowSheetDto studentPojo) {
-        return flowSheetService.update(studentPojo);
+    public FlowSheetDto update(@RequestBody FlowSheetDto flowSheetDto) {
+        return flowSheetService.update(flowSheetDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){

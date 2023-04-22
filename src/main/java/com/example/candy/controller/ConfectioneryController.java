@@ -34,8 +34,8 @@ public class ConfectioneryController {
         return confectioneryService.create(shopId, confectioneryDto);
     }
     @PutMapping("/update")
-    public ConfectioneryDto update(@RequestBody ConfectioneryDto studentPojo) {
-        return confectioneryService.update(studentPojo);
+    public ConfectioneryDto update(@RequestBody ConfectioneryDto confectioneryDto) {
+        return confectioneryService.update(confectioneryDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){

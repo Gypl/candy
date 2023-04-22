@@ -31,8 +31,8 @@ public class OrderedConfectioneryController {
         return orderedConfectioneryService.create(ordersId, orderedConfectioneryDto);
     }
     @PutMapping("/update")
-    public OrderedConfectioneryDto update(@RequestBody OrderedConfectioneryDto studentPojo) {
-        return orderedConfectioneryService.update(studentPojo);
+    public OrderedConfectioneryDto update(@RequestBody OrderedConfectioneryDto orderedConfectioneryDto) {
+        return orderedConfectioneryService.update(orderedConfectioneryDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){

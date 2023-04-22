@@ -34,8 +34,8 @@ public class PurchaseController {
         return purchaseService.create(shopId, purchaseDto);
     }
     @PutMapping("/update")
-    public PurchaseDto update(@RequestBody PurchaseDto studentPojo) {
-        return purchaseService.update(studentPojo);
+    public PurchaseDto update(@RequestBody PurchaseDto purchaseDto) {
+        return purchaseService.update(purchaseDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){

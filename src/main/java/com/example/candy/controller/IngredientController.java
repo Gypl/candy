@@ -29,8 +29,8 @@ public class IngredientController {
         return ingredientService.create(flowSheetId, ingredientDto);
     }
     @PutMapping("/update")
-    public IngredientDto update(@RequestBody IngredientDto studentPojo) {
-        return ingredientService.update(studentPojo);
+    public IngredientDto update(@RequestBody IngredientDto ingredientDto) {
+        return ingredientService.update(ingredientDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){

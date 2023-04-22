@@ -34,8 +34,8 @@ public class OrdersController {
         return ordersService.create(shopId, ordersDto);
     }
     @PutMapping("/update")
-    public OrdersDto update(@RequestBody OrdersDto studentPojo) {
-        return ordersService.update(studentPojo);
+    public OrdersDto update(@RequestBody OrdersDto ordersDto) {
+        return ordersService.update(ordersDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){

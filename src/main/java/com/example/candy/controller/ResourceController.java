@@ -35,8 +35,8 @@ public class ResourceController {
         return resourceService.create(shopId, resourceDto);
     }
     @PutMapping("/update")
-    public ResourceDto update(@RequestBody ResourceDto studentPojo) {
-        return resourceService.update(studentPojo);
+    public ResourceDto update(@RequestBody ResourceDto resourceDto) {
+        return resourceService.update(resourceDto);
     }
     @DeleteMapping("/delete/{id}")
     public void delete(@PathVariable long id){
