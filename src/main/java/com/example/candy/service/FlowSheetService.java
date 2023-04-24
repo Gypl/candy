@@ -44,6 +44,7 @@ public class FlowSheetService {
         FlowSheet flowSheet = flowSheetRepository.findById(flowSheetDto.getId()).orElseThrow(()
                 -> new ResponseStatusException(HttpStatus.NOT_FOUND));
         flowSheet = FlowSheetDto.toEntity(flowSheetDto);
+        flowSheet.setCandyShop(candyShopRepository.getReferenceById(flowSheetDto.getCandyShopId()));
         return FlowSheetDto.fromEntity(flowSheetRepository.save(flowSheet));
     }
 

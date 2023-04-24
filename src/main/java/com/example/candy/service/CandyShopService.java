@@ -31,6 +31,14 @@ public class CandyShopService {
         }
         return result;
     }
+    /**
+     * Возвращает все кондитерские.
+     * @param id id кондитерской.
+     * @return Все кондитерскую.
+     */
+    public CandyShopDto findById (long id) {
+        return CandyShopDto.fromEntity(candyShopRepository.getReferenceById(id));
+    }
 
     /**
      * Возвращает Id кондитерского магазина с именем name.
