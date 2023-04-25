@@ -30,7 +30,7 @@ public class IngredientService {
     public List<IngredientDto> findAll (long id) {
         List<IngredientDto> result = new ArrayList<>();
         for (Ingredient ingredient : id == -1
-                ? ingredientRepository.findAll() : ingredientRepository.findAllById(id)) {
+                ? ingredientRepository.findAll() : ingredientRepository.findByFlowSheet_Id(id)) {
             result.add(IngredientDto.fromEntity(ingredient));
         }
         return result;

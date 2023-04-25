@@ -27,7 +27,7 @@ public class CandyShopController {
     public List<CandyShopDto> findAllByCandyShopName(@PathVariable String name) {
         return candyShopService.findAll(name);
     }
-    @GetMapping("/{id}")
+    @GetMapping("/id/{id}")
     public CandyShopDto findAllByCandyShopName(@PathVariable long id) {
         return candyShopService.findById(id);
     }
